@@ -8,11 +8,10 @@ padding: 0;
 .card {
     background: rgb(202, 241, 202);
     color: black;
-    padding: 2em;
-    border-radius: 30px;
-    width: 100%;
-    max-width: 420px;
-    margin: 1em;
+    border-radius: 12px;
+    width: 18%;
+    padding: 4px;
+    border: 2px solid black;
 }
 
 
@@ -71,4 +70,36 @@ nav {
     justify-content: space-between;
     border-right: 2px solid #000;
     padding: 1em;
+}
+
+aside {
+    width: 30%;
+}
+
+#history {
+    display: flex;
+    flex-direction: column;
+}
+
+#history button {
+    border-radius: unset;
+}
+
+main {
+    width: 65%;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 10px;
+}
+
+#current {
+    border: 2px solid black;
+    padding: 5px;
+    background: whitesmoke;
+    border-radius: 12px;
+}
+
+#forecast {
+    display: flex;
+    justify-content: space-around;
 }

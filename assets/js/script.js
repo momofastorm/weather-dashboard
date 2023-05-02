@@ -1,3 +1,22 @@
+let store;
+let history = document.getElementById('history');
+
+const getStore = () => { 
+    store = localStorage.cities ? JSON.parse(localStorage.cities) : [];
+
+    if(store.length) {
+
+        history.innerHTML = '';
+        
+        store.forEach(city => {
+            history.innerHTML += `
+                <button>${city}</button>
+            `;
+        });
+    };
+};
+
+getStore();
 
 let btn = document.querySelector('button');
 
@@ -14,14 +33,28 @@ btn.onclick = async () => {
     let {name, dt, main:{temp,humidity},wind:{speed}, weather:[{icon}]} = await( await fetch(url1)).json();
 
     current.innerHTML = `
-        <h2>${name} (${new Date(dt*1000).toLocaleString()} <img src="https://openweather.com/img/w/${icon}.png>)</h2>
+        <h1>${name} (${new Date(dt*1000).toDateString()}) <img src="https://openweathermap.org/img/w/${icon}.png"></h1>
         <p>Temp: ${temp} °F</p>
         <p>Humidity: ${humidity}%</p>
         <p>Wind: ${speed} m/s</p>
     `
 
-    let forecastData = await( await fetch(url2)).json();
+    let { list } = await( await fetch(url2)).json();
 
-    console.log(forecastData);
+    x = list;
+    
+    for(let i = 0; i < list.length; i=i+8) {
 
+        let {name, dt, main:{temp,humidity},wind:{speed}, weather:[{icon}]} = list[i];
+
+        forecast.innerHTML += `
+            <div class="card">
+                <h3>${new Date(dt*1000).toUTCString().slice(0,11)}</h3>
+                <img src="https://openweathermap.org/img/w/${icon}.png">
+                <p>Temp: ${temp} °F</p>
+                <p>Wind: ${speed} m/s</p>
+                <p>Humidity: ${humidity}%</p>
+            </div>
+        `;
+    };
 };
