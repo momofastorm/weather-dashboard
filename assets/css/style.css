@@ -21,7 +21,7 @@ padding: 0;
  justify-content: center;
     }
 
-button {
+button1 {
     margin: 0.5em;
    border-radius: 50%;
    border: none;
@@ -33,6 +33,7 @@ button {
    cursor: pointer;
    transition: 0.2s ease-in-out;
 }
+
 
 input.search.bar {
     border: none;
@@ -47,7 +48,7 @@ input.search.bar {
 
 }
 button:hover {
-    background: #7c7c77c6;
+    background: lightpink;
 }
 h1.temp{
     margin: 0;

@@ -1,3 +1,4 @@
+//local storage for storing cities
 let store;
 let history = document.getElementById('history');
 
@@ -10,12 +11,12 @@ const getStore = () => {
         
         store.forEach(city => {
             history.innerHTML += `
-                <button>${city}</button>
+                <button2>${city}</button2>
             `;
         });
     };
 };
-
+//Current weather for the city using the API key
 getStore();
 
 let btn = document.querySelector('button');
@@ -30,6 +31,7 @@ btn.onclick = async () => {
     
     let url2 = `https://api.openweathermap.org/data/2.5/forecast?appid=${apiKey}&units=imperial&q=${city}`;
 
+    //display current date and  weather. data
     let {name, dt, main:{temp,humidity},wind:{speed}, weather:[{icon}]} = await( await fetch(url1)).json();
 
     current.innerHTML = `
@@ -38,7 +40,7 @@ btn.onclick = async () => {
         <p>Humidity: ${humidity}%</p>
         <p>Wind: ${speed} m/s</p>
     `
-
+//display 5 day forecast
     let { list } = await( await fetch(url2)).json();
 
     x = list;
