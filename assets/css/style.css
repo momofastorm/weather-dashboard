@@ -28,7 +28,7 @@ button {
    height: 44px;
    width: 44px;
    outline: none;
-   background: #7c7c77c2;
+   background: rgb(12, 240, 240)
    color: white;
    cursor: pointer;
    transition: 0.2s ease-in-out;
