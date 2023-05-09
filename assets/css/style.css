@@ -21,6 +21,15 @@ padding: 0;
  justify-content: center;
     }
 
+.histBtn {
+    background: teal;
+    color: white;
+    border-right: 2px solid #000;
+    border-radius: 8px;
+    padding: 5px;
+    margin: 5px 20%;
+}
+
 button1 {
     margin: 0.5em;
    border-radius: 50%;
@@ -82,8 +91,14 @@ aside {
     flex-direction: column;
 }
 
-#history button {
+#historyButton {
     border-radius: unset;
+    text-align: center;
+    font-size: 2rem;
+     color: rgb(175, 173, 173)
+     font-family: inherit;
+     font-size: 105%;
+    
 }
 
 main {

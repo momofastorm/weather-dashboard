@@ -11,7 +11,7 @@ const getStore = () => {
         
         store.forEach(city => {
             history.innerHTML += `
-                <button2>${city}</button2>
+                <button class="histBtn" onclick="handleHist('${city}')">${city}</button>
             `;
         });
     };
@@ -21,7 +21,9 @@ getStore();
 
 let btn = document.querySelector('button');
 
-btn.onclick = async () => {
+btn.onclick = searchCity;
+
+async function searchCity(){
 
     let city = document.querySelector('input').value;
 
@@ -39,16 +41,24 @@ btn.onclick = async () => {
         <p>Temp: ${temp} °F</p>
         <p>Humidity: ${humidity}%</p>
         <p>Wind: ${speed} m/s</p>
-    `
+    `;
+
+    if(!store.includes(city)) {
+        store.push(city);
+        localStorage.setItem('cities', JSON.stringify(store));
+        getStore();
+    } 
+    
 //display 5 day forecast
     let { list } = await( await fetch(url2)).json();
 
     x = list;
+    forecast.innerHTML = '';
     
     for(let i = 0; i < list.length; i=i+8) {
 
         let {name, dt, main:{temp,humidity},wind:{speed}, weather:[{icon}]} = list[i];
-
+        
         forecast.innerHTML += `
             <div class="card">
                 <h3>${new Date(dt*1000).toUTCString().slice(0,11)}</h3>
@@ -59,4 +69,9 @@ btn.onclick = async () => {
             </div>
         `;
     };
+};
+
+function handleHist(city) {
+    document.querySelector('input').value = city;
+    searchCity();
 };
